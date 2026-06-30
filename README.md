@@ -1,20 +1,21 @@
-# C++ Student Directory Console Application
+# C++ Dynamic Student Directory Application
 
-A dynamic C++ console application designed to manage, calculate, and display student directory records. The program prompts the user to input critical student details—including identification numbers and laboratory scores—and automatically processes their performance metrics.
+A standalone C++ console application designed to manage and display an interactive student directory. The program dynamically captures student records, enforces unique identifier constraints, and structures the records into a clean terminal report.
 
 ## Features
 
-* **Dynamic Data Input:** Captures individual student IDs and multiple laboratory scores sequentially.
-* **Automated Processing:** Computes the precise average of three lab scores instantly.
-* **Formatted Output:** Displays calculated averages formatted to exactly four decimal places for precision grading.
+* **Dynamic Allocation:** Prompts the user for the total population size to size data storage dynamically.
+* **Duplicate ID Prevention:** Implements a continuous validation loop that cross-checks entries to prevent duplicate identification numbers.
+* **Robust Input Handling:** Utilizes input stream clearing and whitespace stripping (`ws`) to handle multi-word student names without crashing.
+* **Formatted Output Report:** Generates a structured directory review summarizing all verified names and identification keys.
 
 ## Requirements and Installation
 
 ### Prerequisites
-* A C++ compiler supporting C++11 or higher (such as g++, Clang, or MSVC).
+* A C++ compiler supporting standard variable-length arrays or C++11 sequences (such as g++, Clang, or MSVC).
 
 ### Compilation
-Open your terminal or command prompt, navigate to the project folder, and compile the program using:
+Open your terminal, navigate to the project directory, and compile the source file:
 
 ```bash
 g++ -o student_directory main.cpp
@@ -22,7 +23,7 @@ g++ -o student_directory main.cpp
 
 ## Usage
 
-Run the compiled executable application:
+Run the compiled binary executable:
 
 ```bash
 ./student_directory
@@ -31,17 +32,32 @@ Run the compiled executable application:
 ### Example Interaction
 
 ```text
-Enter Students ID: 2025-1098
-Enter Lab 1 Score: 85.5
-Enter Lab 2 score: 90.0
-Enter Lab 3 score: 88.25
+Enter the number of students: 2
 
-StudentsID:   2025-1098
-Average Score: 87.9167
+Enter Details for Student 1
+Enter Name: John Doe
+Enter ID number: 1001
+
+Enter Details for Student 2
+Enter Name: Jane Smith
+Enter ID number: 1001
+Error: ID 1001 is already taken! Please enter your ID.
+
+Enter ID number: 1002
+
+===== STUDENT DIRECTORY =====
+Student 1
+Name: John Doe
+ID: 1001
+-------------------
+Student 2
+Name: Jane Smith
+ID: 1002
+-------------------
 ```
 
-## Code Architecture
+## Technical Specification
 
-The program relies on standard C++ libraries to handle data processing and formatting:
-* <iostream>: Manages standard console input and output streams.
-* <iomanip>: Utilizes setprecision and fixed manipulators to enforce strict decimal formatting on the calculated averages.
+The software architecture implements core standard library features to manage the state safely:
+* `<iostream>`: Facilitates console input stream management and string buffering.
+* `<string>`: Supports robust continuous text manipulation and literal matching comparisons.

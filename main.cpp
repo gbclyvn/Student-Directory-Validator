@@ -1,29 +1,48 @@
-﻿#include <iostream>
-#include <iomanip> 
+#include <iostream>
+#include <string>
 using namespace std;
 
-int main() {
-    string studentsID;
-    float lab1, lab2, lab3, average;
+int main(){
+    int numStudents;
+    
+    cout << "Enter the number of students: ";
+    cin >> numStudents;
 
-    cout << "Enter Students ID: ";
-    cin >> studentsID;
+    cin.ignore();
 
-    cout << "Enter Lab 1 Score: ";
-    cin >> lab1;
+    string studentNames[numStudents];
+    string studentIDs[numStudents];
 
-    cout << "Enter Lab 2 score: ";
-    cin >> lab2;
+    for (int i= 0; i < numStudents; i++){
+        cout<<"\nEnter Details for Student "<< i + 1 << endl;
 
-    cout << "Enter Lab 3 score: ";
-    cin >> lab3;
+        cout << "Enter Name: ";
+        getline(cin>>ws, studentNames[i]);
 
-    average = (lab1 + lab2 + lab3) / 3;
+        bool isDuplicate;
+            do{
+                isDuplicate=false;
+                cout<< "Enter ID number: ";
+                getline(cin>>ws, studentIDs[i]);
 
-    cout << endl;
-    cout<< "StudentsID:   " << studentsID << endl;
-    cout << "Average Score: " << fixed <<
-    setprecision(4) << average << endl;
+                for (int j=0; j< i; j++){
+                    if (studentIDs[i] == studentIDs[j]){
+                        cout << "Error: ID " << studentIDs[i] << " is already taken! Please enter your ID.\n" << endl;
+                        isDuplicate = true;
+                        break;
+                    }
 
-    return 0;
+                }
+            } while (isDuplicate);
+
+    }
+
+    cout<<"\n===== STUDENT DIRECTORY =====" << endl;
+    for (int i = 0; i < numStudents; i++) {
+    cout << "Student " << i + 1 << endl;
+    cout << "Name: " << studentNames[i] << endl;
+    cout << "ID: " << studentIDs[i] << endl;
+    cout << "-------------------" << endl;
+    }
+return 0;
 }
